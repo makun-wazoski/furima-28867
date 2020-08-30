@@ -42,7 +42,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :item
-- has_many :purchase
+- has_many :purchases
 
 
 ## items テーブル
@@ -51,7 +51,7 @@ Things you may want to cover:
 | --------------- | ---------- | ------------------------------ |
 | image           | string     | null: false                    |
 | item            | string     | null: false                    |
-| text            | string     | null: false                    |
+| text            | text       | null: false                    |
 | category        | integer    | null: false                    |
 | status          | integer    | null: false                    |
 | shipping_burden | integer    | null: false                    |
