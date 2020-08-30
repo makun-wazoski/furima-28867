@@ -41,7 +41,7 @@ Things you may want to cover:
 
 ### Association
 
-- has_many :item
+- has_many :items
 - has_many :purchases
 
 
