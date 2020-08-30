@@ -27,14 +27,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column          | Type   | Options     |
-| --------------- | ------ | ----------- |
-| nickname        | string | null: false |
-| email           | string | null: false |
-| password        | string | null: false |
-| name            | string | null: false |
-| kana_name       | string | null: false |
-| birthday        | string | null: false |
+| Column           | Type   | Options     |
+| ---------------  | ------ | ----------- |
+| nickname         | string | null: false |
+| email            | string | null: false |
+| password         | string | null: false |
+| family_name      | string | null: false |
+| first_name       | string | null: false |
+| kana_family_name | string | null: false |
+| kana_first_name  | string | null: false |
+| birthday         | date   | null: false |
 
 
 ### Association
@@ -50,33 +52,30 @@ Things you may want to cover:
 | image           | string     | null: false                    |
 | item            | string     | null: false                    |
 | text            | string     | null: false                    |
-| category        | string     | null: false                    |
-| status          | string     | null: false                    |
-| shipping_burden | string     | null: false                    |
-| shipping_erea   | string     | null: false                    |
-| date_shipment   | string     | null: false                    |
-| price           | string     | null: false                    |
+| category        | integer    | null: false                    |
+| status          | integer    | null: false                    |
+| shipping_burden | integer    | null: false                    |
+| shipping_erea   | integer    | null: false                    |
+| date_shipment   | integer    | null: false                    |
+| price           | integer    | null: false                    |
 | user            | references | null: false, foreign_key: true |
 
 
 ### Association
 
-- belongs_to :purchase
+- has_one :purchase
 - belongs_to :user
 
 ## purchases テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| card_number     | integer    | null: false                    |
-| expiration_day  | integer    | null: false                    |
-| security_code   | integer    | null: false                    |
 | user            | references | null: false, foreign_key: true |
 | item            | references | null: false, foreign_key: true |
 
 ### Association
 
-- has_many :item
+- belongs_to :item
 - belongs_to :user
 - has_one :address
 
@@ -84,12 +83,12 @@ Things you may want to cover:
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| postal_code      | integer    | null: false                    |
+| postal_code      | string     | null: false                    |
 | prefectures      | string     | null: false                    |
 | city             | string     | null: false                    |
 | house_number     | string     | null: false                    |
-| building         | string     | null: false                    |
-| phone_number     | integer    | null: false                    |
+| building         | string     |                                |
+| phone_number     | string     | null: false                    |
 | purchase         | references | null: false, foreign_key: true |
 
 ### Association
