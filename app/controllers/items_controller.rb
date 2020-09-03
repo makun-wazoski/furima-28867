@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-before_action :move_to_new_user_session, except:[:index, :show]
+# before_action :move_to_new_user_session, except:[:index, :show]
 
 
   def index
@@ -8,9 +8,9 @@ before_action :move_to_new_user_session, except:[:index, :show]
   def show
   end
 
-  def move_to_new_user_session
-    unless user_signed_in?
-      redirect_to '/users/sign_in'
-    end
-  end
+  # def move_to_new_user_session
+  #   unless user_signed_in?
+  #     redirect_to '/users/sign_in'
+  #   end
+  # end
 end
