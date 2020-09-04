@@ -4,8 +4,11 @@ class ItemsController < ApplicationController
   def index
   end
 
-  def show
+  def new
+    # @item = Item.new
   end
+  # def show
+  # end
 
   # def move_to_new_user_session
   #   unless user_signed_in?
