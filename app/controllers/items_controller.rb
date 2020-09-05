@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   # before_action :move_to_new_user_session, except:[:index, :show]
+  before_action :authenticate_user!, only: [:new]
 
   def index
   end
@@ -11,8 +12,8 @@ class ItemsController < ApplicationController
   # end
 
   # def move_to_new_user_session
-  #   unless user_signed_in?
-  #     redirect_to '/users/sign_in'
+  #   
+  #   redirect_to new_user_session_path,unless user_signed_in?
   #   end
   # end
 end
