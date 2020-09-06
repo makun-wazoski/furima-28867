@@ -66,6 +66,7 @@ Things you may want to cover:
 - has_one :purchase
 - belongs_to :user
 
+
 ## purchases テーブル
 
 | Column          | Type       | Options                        |
