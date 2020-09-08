@@ -13,13 +13,16 @@ class Item < ApplicationRecord
     validates :image
     validates :item
     validates :text
-    validates :cotegory
-    validates :status
-    validates :shipping_burden
-    validates :shipping_erea
-    validates :date_shipment
     validates :price, format: { with: /\A[0-9]+\z/, message: 'Price Half-width number'}
     validates :price, format: { with: /[3-9][0-9]{2}|[1-9][0-9]{3,6}/, message: 'Price Out of setting range'}
+  end
+
+  with_options numericality: { other_than: 0, message:"Select" } do
+    validates :cotegory_id
+    validates :status_id
+    validates :shipping_burden_id
+    validates :shipping_erea_id
+    validates :date_shipment_id
 
   end
 end
