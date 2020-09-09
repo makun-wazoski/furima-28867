@@ -13,8 +13,7 @@ class Item < ApplicationRecord
     validates :image
     validates :item
     validates :text
-    validates :price, format: { with: /\A[0-9]+\z/, message: 'Price Half-width number'}
-    validates :price, format: { with: /[3-9][0-9]{2}|[1-9][0-9]{3,6}/, message: 'Price Out of setting range'}
+    validates :price, format: { with: /[3-9][0-9]{2}|[1-9][0-9]{3,6}/, message: 'Out of setting range, Price Half-width number'}
   end
 
   with_options numericality: { other_than: 0, message:"Select" } do
