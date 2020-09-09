@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
+    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
@@ -24,13 +24,4 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:image, :item, :text, :cotegory_id, :status_id, :shipping_burden_id, :shipping_erea_id, :date_shipment_id, :price).merge(user_id: current_user.id)
   end
 
-
-  # def show
-  # end
-
-  # def move_to_new_user_session
-  #   
-  #   redirect_to new_user_session_path,unless user_signed_in?
-  #   end
-  # end
 end
