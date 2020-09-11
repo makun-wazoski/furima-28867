@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
 
   def index
+    @items = Item.all.order("created_at DESC")
   end
 
   def new
@@ -16,6 +17,11 @@ class ItemsController < ApplicationController
     else
       render new_item_path
     end
+  end
+
+  def  done
+    @item_purchase= Item.find(params[:id])
+    @item_purchase.update( purchase_id: current_user.id)
   end
 
   private
