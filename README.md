@@ -65,6 +65,7 @@ Things you may want to cover:
 
 - has_one :purchase
 - belongs_to :user
+- has_one_attached :image
 
 
 ## purchases テーブル
