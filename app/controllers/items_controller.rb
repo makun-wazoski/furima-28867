@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -24,9 +24,9 @@ class ItemsController < ApplicationController
     # @user = User.find(params[:nickname])
   end
 
-  def  done
-    @item_purchase= Item.find(params[:id])
-    @item_purchase.update( purchase_id: current_user.id)
+  def done
+    @item_purchase = Item.find(params[:id])
+    @item_purchase.update(purchase_id: current_user.id)
   end
 
   private
@@ -34,5 +34,4 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:image, :item, :text, :cotegory_id, :status_id, :shipping_burden_id, :shipping_erea_id, :date_shipment_id, :price).merge(user_id: current_user.id)
   end
-
 end
