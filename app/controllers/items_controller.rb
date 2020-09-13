@@ -33,6 +33,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to root_path
+  end
+
   def done
     @item_purchase = Item.find(params[:id])
     @item_purchase.update(purchase_id: current_user.id)
