@@ -1,28 +1,57 @@
 class PurchasesController < ApplicationController
-  before_action :move_to_index, only: [:index]
-  before_action :move_to_index2, only: [:index]
+  # before_action :move_to_index, only: [:index]
+  # before_action :move_to_index2, only: [:index]
   
   def index
     @item = Item.find(params[:item_id])
+    @order = PurchaseAddress.new
   end
   
   def create
-  end
-
-  def move_to_index
+    # binding.pry
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id
-      redirect_to root_path
+    @order = PurchaseAddress.new(order_params)
+    if @order.valid?
+      pay_item
+      @order.save
+      return redirect_to root_path
+    else
+      render 'index'
     end
   end
 
-  def move_to_index2
-    # params[:item_id]はurlのitems/item_id/purchaseを取得している
-    # ここではItemテーブルに合致する情報を取得している
-    @purchase = Item.find(params[:item_id])
-    if @purchase.purchase != nil
-      # アソシエーション↑で結びつける
-      redirect_to root_path
-    end
+  # def move_to_index
+  #   @item = Item.find(params[:item_id])
+  #   if current_user.id == @item.user_id
+  #     redirect_to root_path
+  #   end
+  # end
+
+  # def move_to_index2
+  #   # params[:item_id]はurlのitems/item_id/purchaseを取得している
+  #   # ここではItemテーブルに合致する情報を取得している
+  #   @purchase = Item.find(params[:item_id])
+  #   if @purchase.purchase != nil
+  #     # アソシエーション↑で結びつける
+  #     redirect_to root_path
+  #   end
+  # end
+
+  private  
+  
+  def order_params
+    # Parameter { "item" => { "name" => "ガンダム", "category_id" => "5",    } }
+    # params.require(:item).premit(:name, :category_id,    ).merge(user_id: current_user.id)
+    params.permit(:postal_code, :prefecture_id, :city, :house_number, :building, :phone_number,:token).merge(user_id: current_user.id, item_id:params[:item_id])
   end
+
+  def pay_item  
+    Payjp.api_key = "sk_test_5a08e036e1595df410c57b5f"  # PAY.JPテスト秘密鍵
+    Payjp::Charge.create(
+      amount: @item.price,  # 商品の値段
+      card: order_params[:token],    # カードトークン
+      currency:'jpy'                 # 通貨の種類(日本円)
+    )
+  end
+
 end

@@ -8,6 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("../price")
+require("../card")    //追加
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
