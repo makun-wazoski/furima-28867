@@ -16,13 +16,11 @@ const pay = () => {
     debugger
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
-        console.log(response)
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} type="hidden" name='token'>`;
         // nameはパラメータに入れる入れれのもの名前'token'に'${token}'をいれてコントローラーに渡してる
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
-        console.log(OK)
       }
       document.getElementById("card-number").removeAttribute("name");
       document.getElementById("card-cvc").removeAttribute("name");
