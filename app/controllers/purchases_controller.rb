@@ -17,30 +17,28 @@ class PurchasesController < ApplicationController
     end
   end
 
+  private
+  
   def move_to_index
     @item = Item.find(params[:item_id])
     redirect_to root_path if current_user.id == @item.user_id
   end
-
+  
   def move_to_index2
     # params[:item_id]はurlのitems/item_id/purchaseを取得している
     # ここではItemテーブルに合致する情報を取得している
-    @purchase = Item.find(params[:item_id])
-    unless @purchase.purchase.nil?
+    @item = Item.find(params[:item_id])
+    unless @item.purchase.nil?
       # アソシエーション↑で結びつける
       redirect_to root_path
     end
   end
-
-  private
 
   def set_item
     @item = Item.find(params[:item_id])
   end
 
   def order_params
-    # Parameter { "item" => { "name" => "ガンダム", "category_id" => "5",    } }
-    # params.require(:item).premit(:name, :category_id,    ).merge(user_id: current_user.id)
     params.permit(:postal_code, :prefecture_id, :city, :house_number, :building, :phone_number, :token).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 
