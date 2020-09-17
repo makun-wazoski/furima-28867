@@ -3,7 +3,7 @@ class PurchaseAddress
   attr_accessor :postal_code, :prefecture_id, :city, :house_number, :building, :phone_number, :user_id, :item_id, :token
 
   with_options presence: true do
-    validates :token
+    # validates :token
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: "can't be blank, Postal code Input correctly" }
     validates :city
     validates :house_number
