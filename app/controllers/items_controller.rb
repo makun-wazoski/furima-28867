@@ -40,7 +40,7 @@ class ItemsController < ApplicationController
       render :show
     end
   end
-  
+
   private
 
   def item_params
