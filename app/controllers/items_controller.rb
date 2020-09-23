@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
-  before_action :set_item, only: [:edit, :show, :update, :destroy]
+  before_action :set_item, only: [:edit, :show, :update, :destroy, :seach]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -39,6 +39,10 @@ class ItemsController < ApplicationController
     else
       render :show
     end
+  end
+
+  def search
+    @item = Item.search(params[:keyword])
   end
 
   private

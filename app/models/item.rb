@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
-  has_one_attached :image
-  has_one :purchase
+  has_one_attached :image, dependent: :destroy
+  has_one :purchase, dependent: :destroy
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :cotegory
   belongs_to_active_hash :status
@@ -23,4 +23,13 @@ class Item < ApplicationRecord
     validates :shipping_erea_id
     validates :date_shipment_id
   end
+
+  def self.search(search)
+    if search != ""
+      Item.where('text LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
+
 end
