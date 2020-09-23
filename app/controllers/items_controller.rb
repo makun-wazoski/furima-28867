@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @item = Item.search(params[:keyword])
+    @item = Item.search(params[:keyword]).order('created_at DESC')
   end
 
   private
